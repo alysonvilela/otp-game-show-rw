@@ -8832,7 +8832,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"concurrently@npm:8.2.2":
+"concurrently@npm:8.2.2, concurrently@npm:^8.2.2":
   version: 8.2.2
   resolution: "concurrently@npm:8.2.2"
   dependencies:
@@ -18339,6 +18339,7 @@ __metadata:
   dependencies:
     "@redwoodjs/core": "npm:7.6.3"
     "@redwoodjs/project-config": "npm:7.6.3"
+    concurrently: "npm:^8.2.2"
     prettier-plugin-tailwindcss: "npm:0.4.1"
   languageName: unknown
   linkType: soft

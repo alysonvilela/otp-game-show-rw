@@ -9,6 +9,7 @@
   "devDependencies": {
     "@redwoodjs/core": "7.6.3",
     "@redwoodjs/project-config": "7.6.3",
+    "concurrently": "^8.2.2",
     "prettier-plugin-tailwindcss": "0.4.1"
   },
   "eslintConfig": {
@@ -20,6 +21,9 @@
   },
   "prisma": {
     "seed": "yarn rw exec seed"
+  },
+  "scripts": {
+    "shad:add": "concurrently -P \"cd web && npx shadcn-ui@latest add -- {@}\" -- "
   },
   "packageManager": "yarn@4.2.2"
 }
