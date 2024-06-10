@@ -2,6 +2,7 @@ import type {
   QueryResolvers,
   MutationResolvers,
   RoomRelationResolvers,
+  Room as RoomType,
 } from 'types/graphql'
 
 import { db } from 'src/lib/db'
@@ -13,6 +14,15 @@ export const rooms: QueryResolvers['rooms'] = () => {
 export const room: QueryResolvers['room'] = ({ id }) => {
   return db.room.findUnique({
     where: { id },
+  })
+}
+
+type RoomByOtpParams = {
+  otp: RoomType['otp']
+}
+export const roomByOtp = ({ otp }: RoomByOtpParams) => {
+  return db.room.findUnique({
+    where: { otp },
   })
 }
 

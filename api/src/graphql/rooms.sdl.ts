@@ -12,6 +12,7 @@ export const schema = gql`
   type Query {
     rooms: [Room!]! @requireAuth
     room(id: String!): Room @requireAuth
+    roomByOtp(otp: String!): Room @requireAuth
   }
 
   input CreateRoomInput {

@@ -11,7 +11,7 @@
     "config": "./config/tailwind.config.js",
     "css": "./src/index.css",
     "cssVariables": true,
-    "prefix": "tw-",
+    "prefix": "",
     "rsc": false,
     "tsx": true
   }

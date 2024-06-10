@@ -11,14 +11,20 @@ import { Set, Router, Route } from '@redwoodjs/router'
 
 import ScaffoldLayout from 'src/layouts/ScaffoldLayout'
 
+import HomeLayout from './layouts/HomeLayout/HomeLayout'
+import RoomPageOtp from './pages/Room/RoomPageOtp/RoomPageOtp'
+
 const Routes = () => {
   return (
     <Router>
-      <Route path="/" page={HomePage} name="home" />
+      <Set wrap={HomeLayout}>
+        <Route path="/" page={HomePage} name="home" />
+      </Set>
       <Set wrap={ScaffoldLayout} title="Rooms" titleTo="rooms" buttonLabel="New Room" buttonTo="newRoom">
         <Route path="/rooms/new" page={RoomNewRoomPage} name="newRoom" />
         <Route path="/rooms/{id}/edit" page={RoomEditRoomPage} name="editRoom" />
-        <Route path="/rooms/{id}" page={RoomRoomPage} name="room" />
+        <Route path="/room/{id}" page={RoomRoomPage} name="room" />
+        <Route path="/r/{otp:String}" page={RoomPageOtp} name="roomByOtp" />
         <Route path="/rooms" page={RoomRoomsPage} name="rooms" />
       </Set>
       <Set wrap={ScaffoldLayout} title="Authors" titleTo="authors" buttonLabel="New Author" buttonTo="newAuthor">
