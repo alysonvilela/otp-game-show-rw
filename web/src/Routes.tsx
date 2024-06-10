@@ -14,7 +14,7 @@ const Routes = () => {
         <Route path="/" page={HomePage} name="home" />
       </Set>
       <Set wrap={DashLayout}>
-        <Route path="/r/" page={RoomRoomsPage} name="rooms" />
+        <Route path="/rooms" page={RoomRoomsPage} name="rooms" />
         <Route path="/r/make" page={RoomNewRoomPage} name="makeRoom" />
         <Route path="/r/otp/{otp:String}" page={RoomPageOtp} name="roomByOtp" />
         <Route path="/r/{id:String}" page={RoomByIdPage} name="roomById" />

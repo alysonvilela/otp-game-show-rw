@@ -1,7 +1,6 @@
 export const schema = gql`
   type Room {
     id: String!
-    slug: String!
     otp: String!
     title: String!
     meta: String!
@@ -16,7 +15,6 @@ export const schema = gql`
   }
 
   input CreateRoomInput {
-    slug: String!
     otp: String!
     title: String!
     meta: String!
@@ -24,7 +22,6 @@ export const schema = gql`
   }
 
   input UpdateRoomInput {
-    slug: String
     otp: String
     title: String
     meta: String

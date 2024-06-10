@@ -26,17 +26,27 @@ const NewRoom = () => {
   const [createRoom, { loading, error }] = useMutation(CREATE_ROOM_MUTATION, {
     onCompleted: () => {
       toast.success('Room created')
-      navigate(routes.rooms())
+      navigate(routes.home())
     },
     onError: (error) => {
       toast.error(error.message)
     },
   })
 
-  const onSave = (input: CreateRoomInput) => {
-    createRoom({ variables: { input } })
+  const onSave = ({ meta, otp, title, author_id }: CreateRoomInput) => {
+    createRoom({
+      variables: {
+        input: {
+          meta,
+          title,
+          author_id,
+          otp: String(otp),
+        },
+      },
+    })
   }
 
+  console.log(error)
   return (
     <div className="rw-segment">
       <header className="rw-segment-header">

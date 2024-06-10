@@ -25,7 +25,6 @@ model Author {
 
 model Room {
   id    String @id @unique @default(cuid())
-  slug  String @unique
   otp   String @unique
   title String
   meta  String

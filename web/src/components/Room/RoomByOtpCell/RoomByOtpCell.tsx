@@ -26,7 +26,6 @@ export const QUERY: TypedDocumentNode<
   query FindRoomByOtp($otp: String!) {
     roomByOtp: roomByOtp(otp: $otp) {
       id
-      slug
       otp
       title
       meta

@@ -58,10 +58,6 @@ const Room = ({ room }: Props) => {
               <td>{room.id}</td>
             </tr>
             <tr>
-              <th>Slug</th>
-              <td>{room.slug}</td>
-            </tr>
-            <tr>
               <th>Otp</th>
               <td>{room.otp}</td>
             </tr>

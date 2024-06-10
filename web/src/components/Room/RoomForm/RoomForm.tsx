@@ -8,7 +8,16 @@ import {
   Label,
   TextField,
   Submit,
+  Controller,
+  useForm,
 } from '@redwoodjs/forms'
+
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSeparator,
+  InputOTPSlot,
+} from 'src/components/ui/input-otp'
 
 type FormRoom = NonNullable<EditRoomById['room']>
 
@@ -20,52 +29,56 @@ interface RoomFormProps {
 }
 
 const RoomForm = (props: RoomFormProps) => {
+  const formMethods = useForm<FormRoom>({
+    defaultValues: {
+      otp: '',
+      title: props.room?.title,
+      meta: props.room?.meta,
+      author_id: props.room?.author_id,
+    },
+  })
   const onSubmit = (data: FormRoom) => {
     props.onSave(data, props?.room?.id)
   }
 
   return (
     <div className="rw-form-wrapper">
-      <Form<FormRoom> onSubmit={onSubmit} error={props.error}>
+      <Form formMethods={formMethods} onSubmit={onSubmit} error={props.error}>
         <FormError
           error={props.error}
           wrapperClassName="rw-form-error-wrapper"
           titleClassName="rw-form-error-title"
           listClassName="rw-form-error-list"
         />
-
-        <Label
-          name="slug"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Slug
-        </Label>
-
-        <TextField
-          name="slug"
-          defaultValue={props.room?.slug}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
-        />
-
-        <FieldError name="slug" className="rw-field-error" />
-
-        <Label
+        <Controller
+          control={formMethods.control}
           name="otp"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Otp
-        </Label>
-
-        <TextField
-          name="otp"
-          defaultValue={props.room?.otp}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
+          render={({ field }) => (
+            <>
+              <Label
+                name="otp"
+                className="rw-label pb-2"
+                errorClassName="rw-label rw-label-error"
+              >
+                Código
+              </Label>
+              <InputOTP maxLength={6} {...field}>
+                <InputOTPGroup>
+                  <InputOTPGroup>
+                    <InputOTPSlot index={0} className="bg-white" />
+                    <InputOTPSlot index={1} className="bg-white" />
+                    <InputOTPSlot index={2} className="bg-white" />
+                  </InputOTPGroup>
+                  <InputOTPSeparator />
+                  <InputOTPGroup>
+                    <InputOTPSlot index={3} className="bg-white" />
+                    <InputOTPSlot index={4} className="bg-white" />
+                    <InputOTPSlot index={5} className="bg-white" />
+                  </InputOTPGroup>
+                </InputOTPGroup>
+              </InputOTP>
+            </>
+          )}
         />
 
         <FieldError name="otp" className="rw-field-error" />

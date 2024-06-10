@@ -19,7 +19,6 @@ export const QUERY: TypedDocumentNode<EditRoomById> = gql`
   query EditRoomById($id: String!) {
     room: room(id: $id) {
       id
-      slug
       otp
       title
       meta
@@ -35,7 +34,6 @@ const UPDATE_ROOM_MUTATION: TypedDocumentNode<
   mutation UpdateRoomMutation($id: String!, $input: UpdateRoomInput!) {
     updateRoom(id: $id, input: $input) {
       id
-      slug
       otp
       title
       meta

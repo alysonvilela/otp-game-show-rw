@@ -17,8 +17,6 @@ import {
   CardTitle,
 } from 'src/components/ui/card'
 
-import Room from '../Room/Room'
-
 export const QUERY: TypedDocumentNode<
   FindRoomByIdQuery,
   FindRoomByIdQueryVariables
@@ -44,7 +42,6 @@ export const Failure = ({ error }: CellFailureProps<FindRoomByIdQuery>) => (
 export const Success = ({
   room,
 }: CellSuccessProps<FindRoomByIdQuery, FindRoomByIdQueryVariables>) => {
-  const meta = JSON.parse(room.meta)
   return (
     <div>
       <CardTitle>Agora é com você!</CardTitle>
@@ -53,7 +50,7 @@ export const Success = ({
       </CardDescription>
       <Card>
         <CardHeader>{room.title}</CardHeader>
-        <CardContent>{JSON.stringify(meta, null, 2)}</CardContent>
+        <CardContent className="font-mono">{room.meta}</CardContent>
       </Card>
     </div>
   )

@@ -50,7 +50,6 @@ const RoomsList = ({ rooms }: FindRooms) => {
         <thead>
           <tr>
             <th>Id</th>
-            <th>Slug</th>
             <th>Otp</th>
             <th>Title</th>
             <th>Meta</th>
@@ -62,7 +61,6 @@ const RoomsList = ({ rooms }: FindRooms) => {
           {rooms.map((room) => (
             <tr key={room.id}>
               <td>{truncate(room.id)}</td>
-              <td>{truncate(room.slug)}</td>
               <td>{truncate(room.otp)}</td>
               <td>{truncate(room.title)}</td>
               <td>{truncate(room.meta)}</td>
@@ -70,7 +68,7 @@ const RoomsList = ({ rooms }: FindRooms) => {
               <td>
                 <nav className="rw-table-actions">
                   <Link
-                    to={routes.room({ id: room.id })}
+                    to={routes.roomById({ id: room.id })}
                     title={'Show room ' + room.id + ' detail'}
                     className="rw-button rw-button-small"
                   >

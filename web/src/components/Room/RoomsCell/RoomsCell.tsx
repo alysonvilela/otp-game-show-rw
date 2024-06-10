@@ -13,7 +13,6 @@ export const QUERY: TypedDocumentNode<FindRooms, FindRoomsVariables> = gql`
   query FindRooms {
     rooms {
       id
-      slug
       otp
       title
       meta
