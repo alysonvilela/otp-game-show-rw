@@ -21,7 +21,7 @@ Discovering Proof of Concepts - Redwoodjs
 - Prefetching
 - Instagration with Global State managers (zustand, redux) and how to deal with hydrations
 - Server components(experimental)
-- 
+- Logger
 
 ## Good points
 - API folder is just powerful.
