@@ -15,6 +15,8 @@ export const QUERY: TypedDocumentNode<
   query FindRoomById($id: String!) {
     room: room(id: $id) {
       id
+      slug
+      otp
       title
       meta
       author_id
