@@ -35,7 +35,7 @@ Discovering Proof of Concepts - Redwoodjs
 - Cells seems to be performant(ssr), but its confusing.
   - Passed about 1-2 hours to understand that queryBySlug was possible only by adding `beforeQuery` could make it work.
   - Pages seems to be just a wrapper for Cells, this makes the folder structure become real big. Could merge them into a single point
-  - This feature seems to be more a equivalent to Nextjs Pages (with getStaticProps and the other hooks) than a proper component.
+  - This feature seems to be more a equivalent to Nextjs Pages (with getStaticProps and the other hooks) than a proper component, so "Why this is in the component folder?".
   - Such a big file and it will always be like that, no option (if you are going through the opinated architecture design).
 - Uses Prisma: Here is a consideration: prisma is very good for migrations documentation and type construction, but its much heavy. If the company/startup have already an infrastructure to deal with just like Vercel does, its awesome. But in the most cases, small growing project don't have one, so the Lock-ins with those popular vendors start to become a risk. Could have just a Query Builder like `kysely lib` or another small ORM like `drizzle`.
 - Regeneration: When you change the prisma schema, you need to generate all DB types and scaffolding, the easiest way to do it is by removing all scaffolding files and generate again.
