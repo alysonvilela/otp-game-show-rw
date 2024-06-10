@@ -1,4 +1,4 @@
-import RoomCell from 'src/components/Room/RoomCell'
+import RoomCell from 'src/components/Room/RoomByOtpCell'
 
 type RoomPageProps = {
   otp: string

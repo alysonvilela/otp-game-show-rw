@@ -1,7 +1,7 @@
 import type {
   DeleteRoomMutation,
   DeleteRoomMutationVariables,
-  FindRoomById,
+  FindRoomByIdQuery,
 } from 'types/graphql'
 
 import { Link, routes, navigate } from '@redwoodjs/router'
@@ -23,14 +23,14 @@ const DELETE_ROOM_MUTATION: TypedDocumentNode<
 `
 
 interface Props {
-  room: NonNullable<FindRoomById['room']>
+  room: NonNullable<FindRoomByIdQuery['room']>
 }
 
 const Room = ({ room }: Props) => {
   const [deleteRoom] = useMutation(DELETE_ROOM_MUTATION, {
     onCompleted: () => {
       toast.success('Room deleted')
-      navigate(routes.rooms())
+      navigate(routes.home())
     },
     onError: (error) => {
       toast.error(error.message)

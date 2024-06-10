@@ -9,7 +9,7 @@ type LayoutProps = {
   children: React.ReactNode
 }
 
-const ScaffoldLayout = ({
+const AdminLayout = ({
   title,
   titleTo,
   buttonLabel,
@@ -34,4 +34,4 @@ const ScaffoldLayout = ({
   )
 }
 
-export default ScaffoldLayout
+export default AdminLayout

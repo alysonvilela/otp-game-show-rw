@@ -1,8 +1,21 @@
+import { useLazyQuery } from '@apollo/client'
+import { Ticket } from 'lucide-react'
+import { FindRoomByOtp, FindRoomByOtpVariables } from 'types/graphql'
+
 import { useForm, Controller } from '@redwoodjs/forms'
 import { navigate, routes } from '@redwoodjs/router'
 import { Metadata } from '@redwoodjs/web'
+import { toast } from '@redwoodjs/web/toast'
 
+import { QUERY } from 'src/components/Room/RoomByOtpCell/RoomByOtpCell'
 import { Button } from 'src/components/ui/button'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from 'src/components/ui/card'
 import {
   InputOTP,
   InputOTPGroup,
@@ -15,54 +28,98 @@ type FormValues = {
   code: string
 }
 const HomePage = () => {
-  const formMethods = useForm<FormValues>()
+  const formMethods = useForm<FormValues>({
+    defaultValues: {
+      code: '',
+    },
+  })
+  const [query, { loading }] = useLazyQuery<
+    FindRoomByOtp,
+    FindRoomByOtpVariables
+  >(QUERY, {
+    async onCompleted(res) {
+      if (!res.roomByOtp) {
+        return toast.error('Código inválido', {
+          duration: 3000,
+        })
+      }
+      toast.success('Código validado')
+
+      await new Promise((res) => setTimeout(res, 1000))
+      navigate(routes.roomById({ id: res.roomByOtp.id }))
+    },
+    onError(error) {
+      toast(error.message)
+    },
+  })
+
+  const code = formMethods.watch('code')
 
   const onSubmit = (data: FormValues) => {
-    navigate(routes.roomByOtp({ otp: data.code }))
+    query({
+      variables: {
+        otp: data.code,
+      },
+    })
   }
+
   return (
     <>
-      <Metadata title="Home" description="Home page" />
-
-      <div className="grid gap-2 text-center">
-        <h1 className="text-2xl font-bold">Parabéns, você está quase lá!</h1>
-        <p className="text-balance text-muted-foreground">
-          Use a sequência dos códigos que você recebeu
-        </p>
-      </div>
-      <form onSubmit={formMethods.handleSubmit(onSubmit)}>
-        <div className="grid gap-4">
-          <div className="grid gap-2 mx-auto">
-            <Controller
-              control={formMethods.control}
-              name="code"
-              render={({ field }) => (
-                <>
-                  <Label htmlFor="code">Adicione seu código</Label>
-                  <InputOTP maxLength={6} {...field}>
-                    <InputOTPGroup>
-                      <InputOTPGroup>
-                        <InputOTPSlot index={0} />
-                        <InputOTPSlot index={1} />
-                        <InputOTPSlot index={2} />
-                      </InputOTPGroup>
-                      <InputOTPSeparator />
-                      <InputOTPGroup>
-                        <InputOTPSlot index={3} />
-                        <InputOTPSlot index={4} />
-                        <InputOTPSlot index={5} />
-                      </InputOTPGroup>
-                    </InputOTPGroup>
-                  </InputOTP>
-                </>
-              )}
-            />
-          </div>
-          <div>
-            <Button className="w-full">Entrar na sala</Button>
-          </div>
+      <Metadata title="Mystery" description="Mystery box" />
+      <Card className="grid grid-cols-6">
+        <div className="col-span-6 lg:col-span-4 ">
+          <CardHeader>
+            <CardTitle>Parabéns, você está quase lá!</CardTitle>
+            <CardDescription>
+              Use a sequência dos códigos que você recebeu
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={formMethods.handleSubmit(onSubmit)}>
+              <div className="grid gap-4">
+                <div className="mx-auto grid gap-2">
+                  <Controller
+                    control={formMethods.control}
+                    name="code"
+                    render={({ field }) => (
+                      <>
+                        <Label htmlFor="code">Adicione seu código</Label>
+                        <InputOTP maxLength={6} {...field}>
+                          <InputOTPGroup>
+                            <InputOTPGroup>
+                              <InputOTPSlot index={0} />
+                              <InputOTPSlot index={1} />
+                              <InputOTPSlot index={2} />
+                            </InputOTPGroup>
+                            <InputOTPSeparator />
+                            <InputOTPGroup>
+                              <InputOTPSlot index={3} />
+                              <InputOTPSlot index={4} />
+                              <InputOTPSlot index={5} />
+                            </InputOTPGroup>
+                          </InputOTPGroup>
+                        </InputOTP>
+                      </>
+                    )}
+                  />
+                </div>
+                <div>
+                  <Button
+                    disabled={loading || code?.length < 6}
+                    className="w-full"
+                  >
+                    Desvendar
+                  </Button>
+                </div>
+              </div>
+            </form>
+          </CardContent>
         </div>
-      </form>
+        <Card className="text-white bg-gradient-to-r from-violet-500 to-fuchsia-500 h-full col-span-6 lg:col-span-2 rounded-t-none md:rounded-t-lg lg:rounded-l-none  flex items-center justify-center flex-col py-6">
+          <Ticket size={48} />
+          <CardDescription className="text-white">...</CardDescription>
+        </Card>
+      </Card>
     </>
   )
 }

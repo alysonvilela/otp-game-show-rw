@@ -28,7 +28,7 @@ export const Empty = () => {
   return (
     <div className="rw-text-center">
       {'No rooms yet. '}
-      <Link to={routes.newRoom()} className="rw-link">
+      <Link to={routes.makeRoom()} className="rw-link">
         {'Create one?'}
       </Link>
     </div>
