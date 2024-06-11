@@ -69,7 +69,7 @@ const HomePage = () => {
       <Card className="grid grid-cols-6">
         <div className="col-span-6 lg:col-span-4 ">
           <CardHeader>
-            <CardTitle>Parabéns, você está quase lá!</CardTitle>
+            <CardTitle>Você está quase lá!</CardTitle>
             <CardDescription>
               Use a sequência dos códigos que você recebeu
             </CardDescription>
@@ -115,7 +115,7 @@ const HomePage = () => {
             </form>
           </CardContent>
         </div>
-        <Card className="text-white bg-gradient-to-r from-violet-500 to-fuchsia-500 h-full col-span-6 lg:col-span-2 rounded-t-none md:rounded-t-lg lg:rounded-l-none  flex items-center justify-center flex-col py-6">
+        <Card className="col-span-6 flex h-full flex-col items-center justify-center rounded-t-none bg-gradient-to-r from-violet-500 to-fuchsia-500  py-6 text-white md:rounded-t-lg lg:col-span-2 lg:rounded-l-none">
           <Ticket size={48} />
           <CardDescription className="text-white">...</CardDescription>
         </Card>

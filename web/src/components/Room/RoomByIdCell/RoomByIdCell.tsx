@@ -46,7 +46,7 @@ export const Success = ({
     <div>
       <CardTitle>Agora é com você!</CardTitle>
       <CardDescription className="pb-4">
-        Desvende o seguinte mistério
+        Parabéns! Você conseguiu desvendar o mistério
       </CardDescription>
       <Card>
         <CardHeader>{room.title}</CardHeader>
