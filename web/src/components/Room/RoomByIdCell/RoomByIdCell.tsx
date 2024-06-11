@@ -44,9 +44,9 @@ export const Success = ({
 }: CellSuccessProps<FindRoomByIdQuery, FindRoomByIdQueryVariables>) => {
   return (
     <div>
-      <CardTitle>Agora é com você!</CardTitle>
+      <CardTitle>Parabéns!</CardTitle>
       <CardDescription className="pb-4">
-        Parabéns! Você conseguiu desvendar o mistério
+        Você conseguiu desvendar o mistério
       </CardDescription>
       <Card>
         <CardHeader>{room.title}</CardHeader>
