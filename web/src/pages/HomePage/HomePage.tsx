@@ -87,15 +87,20 @@ const HomePage = () => {
                         <InputOTP maxLength={6} {...field}>
                           <InputOTPGroup>
                             <InputOTPGroup>
-                              <InputOTPSlot index={0} />
-                              <InputOTPSlot index={1} />
-                              <InputOTPSlot index={2} />
-                            </InputOTPGroup>
-                            <InputOTPSeparator />
-                            <InputOTPGroup>
-                              <InputOTPSlot index={3} />
-                              <InputOTPSlot index={4} />
-                              <InputOTPSlot index={5} />
+                              <InputOTPGroup>
+                                <InputOTPSlot index={0} className="bg-white" />
+                                <InputOTPSlot index={1} className="bg-white" />
+                              </InputOTPGroup>
+                              <InputOTPSeparator />
+                              <InputOTPGroup>
+                                <InputOTPSlot index={2} className="bg-white" />
+                                <InputOTPSlot index={3} className="bg-white" />
+                              </InputOTPGroup>
+                              <InputOTPSeparator />
+                              <InputOTPGroup>
+                                <InputOTPSlot index={4} className="bg-white" />
+                                <InputOTPSlot index={5} className="bg-white" />
+                              </InputOTPGroup>
                             </InputOTPGroup>
                           </InputOTPGroup>
                         </InputOTP>
